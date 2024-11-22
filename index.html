@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Món quà thú vị</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+        color: white;
+        height: 100vh;
+        background: url("/noel.gif") center center no-repeat;
+        background-size: cover; /* This makes the background image cover the entire screen */
+        width: 100%;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      .message {
+        font-size: 1.5rem;
+        margin-bottom: 0px;
+        color: #dc3545;
+      }
+
+      .icon {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .btn-yes {
+        background-color: #28a745;
+        color: white;
+      }
+
+      .btn-no {
+        background-color: #dc3545;
+        color: white;
+        position: relative;
+      }
+
+      .canvas-container {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+      }
+
+      #effectFrame {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container" id="startScreen">
+      <div class="display">
+        <div class="message">Gửi bạn một món quà thú vị nè!</div>
+        <div class="message" class="icon">Nhận giúp mình cho mình vui nhé 🎁</div>
+      </div>
+      <div class="buttons">
+        <button class="btn btn-yes" id="btnYes">Đồng ý</button>
+        <button class="btn btn-no" id="btnNo">Không</button>
+      </div>
+    </div>
+
+    <div class="canvas-container" id="canvasContainer">
+      <iframe id="effectFrame"></iframe>
+    </div>
+
+    <script>
+      const btnYes = document.getElementById("btnYes");
+      const btnNo = document.getElementById("btnNo");
+      const startScreen = document.getElementById("startScreen");
+      const canvasContainer = document.getElementById("canvasContainer");
+      const effectFrame = document.getElementById("effectFrame");
+      const noMessage = "Nhận đi cho mình vui mà 😄";
+
+      let currentEffect = 0;
+      const effects = [
+        "./effects/effect1.html",
+        "./effects/effect2.html",
+        "./effects/effect3.html",
+        "./effects/effect4.html",
+      ];
+
+      btnYes.addEventListener("click", () => {
+        startScreen.style.display = "none";
+        canvasContainer.style.display = "flex";
+        runEffect();
+      });
+
+      btnNo.addEventListener("click", () => {
+        alert(noMessage);
+      });
+
+      function runEffect() {
+        if (currentEffect >= effects.length) {
+          currentEffect = 0;
+        }
+
+        const effectFile = effects[currentEffect];
+        effectFrame.src = effectFile;
+
+        setTimeout(() => {
+          if (confirm("Bạn có muốn xem thêm không?")) {
+            currentEffect++;
+            runEffect();
+          } else {
+            btnNo.style.position = "absolute";
+            btnNo.style.top = Math.random() * 90 + "%";
+            btnNo.style.left = Math.random() * 90 + "%";
+          }
+        }, 4000);
+      }
+    </script>
+  </body>
+</html>
