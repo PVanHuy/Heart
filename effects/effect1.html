@@ -18,6 +18,52 @@ canvas {
   width: 100%;
   height: 100%;
 }
+ /* Hiệu ứng hoạt hình */
+ canvas {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    animation: heart 1.5s ease infinite;
+  }
+
+  @keyframes heart {
+    0% {
+      transform: scale(1);
+    }
+    30% {
+      transform: scale(0.8);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* CSS phản hồi cho màn hình nhỏ */
+  @media (max-width: 768px) {
+    canvas {
+      transform: scale(0.8) translate(-50%, -50%);
+      animation: heart 2s ease infinite;
+    }
+
+    html,
+    body {
+      background: #111; /* Màu nền khác cho màn hình nhỏ */
+    }
+  }
+
+  /* CSS phản hồi cho màn hình điện thoại (rất nhỏ) */
+  @media (max-width: 480px) {
+    canvas {
+      transform: scale(0.6) translate(-50%, -50%);
+      animation: heart 2.5s ease infinite;
+    }
+
+    html,
+    body {
+      background: #222; /* Màu nền khác cho điện thoại */
+    }
+  }
   </style>
  </HEAD>
 
