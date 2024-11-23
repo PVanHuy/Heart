@@ -81,6 +81,39 @@ canvas {
 		transform: scale(1);
 	}
 }
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    #pinkboard {
+      height: 400px;
+      width: 400px;
+    }
+    #pinkboard:before, #pinkboard:after {
+      width: 80px;
+      height: 120px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    #pinkboard {
+      height: 300px;
+      width: 300px;
+    }
+    #pinkboard:before, #pinkboard:after {
+      width: 60px;
+      height: 90px;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    #pinkboard {
+      height: 200px;
+      width: 200px;
+    }
+    #pinkboard:before, #pinkboard:after {
+      width: 40px;
+      height: 70px;
+    }
+  }
   </style>
  </HEAD>
  
